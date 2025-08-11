@@ -11,6 +11,7 @@ services:
       - "9300:9300"
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
+      - ./synonyms.txt:/usr/share/elasticsearch/config/analysis/synonyms.txt
 
 volumes:
   elasticsearch-data:

@@ -5,16 +5,16 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-@Document(indexName = "products")
+@Document(indexName = "products", createIndex = false)
 public class Product {
 
     @Id
     private String id;
 
-    @Field(type = FieldType.Text, name = "name")
+    @Field(type = FieldType.Text, name = "name", analyzer = "synonym_analyzer")
     private String name;
 
-    @Field(type = FieldType.Text, name = "description")
+    @Field(type = FieldType.Text, name = "description", analyzer = "synonym_analyzer")
     private String description;
 
     @Field(type = FieldType.Double, name = "price")

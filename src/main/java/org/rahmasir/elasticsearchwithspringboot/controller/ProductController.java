@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -39,5 +40,17 @@ public class ProductController {
     @Operation(summary = "Delete a product by ID")
     public void deleteProduct(@PathVariable String id) {
         productService.deleteProduct(id);
+    }
+
+    @GetMapping("/search")
+    @Operation(summary = "Search for products by name or description")
+    public List<Product> searchProducts(@RequestParam(name = "query") String query) {
+        return productService.searchProducts(query);
+    }
+
+    @GetMapping("/fuzzy-search")
+    @Operation(summary = "Fuzzy search for products by name or description")
+    public List<Product> fuzzySearchProducts(@RequestParam(name = "query") String query) {
+        return productService.searchProductsFuzzy(query);
     }
 }
